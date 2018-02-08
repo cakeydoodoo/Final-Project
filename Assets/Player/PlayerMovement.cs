@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     public float runSpeed;
     public float speed;
     public float jumpForce;
+    //public Coroutine StartCorountine;
 
     static Animator anim;
     Rigidbody rb;
@@ -34,12 +36,16 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            jump();
+            StartCoroutine(jump());
+            
 
         }
 
+    }
 
-
+    IEnumerator wait()
+    {
+        yield return new WaitForSecondsRealtime(1f);
     }
 
     void Movement()
@@ -121,10 +127,13 @@ public class PlayerMovement : MonoBehaviour {
         myCamera.transform.rotation = myCamera.transform.rotation * Quaternion.Euler(new Vector3(-verticalRotation, 0f, 0f));
     }
 
-    void jump()
+    IEnumerator jump()
     {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
         anim.SetTrigger("jump");
+        //allows the animation to play before the player jumps
+        yield return new WaitForSeconds(0.35f);
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+        
 
     }
 
