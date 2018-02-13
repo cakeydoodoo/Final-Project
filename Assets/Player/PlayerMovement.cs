@@ -89,7 +89,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             anim.SetBool("idleWalk", false);
             anim.SetBool("walkRun", false);
-        } else if(Input.GetKeyUp(KeyCode.LeftShift) | Input.GetKeyDown("w"))
+            anim.SetBool("idleBack", false);
+        }
+       
+        else if(Input.GetKeyUp(KeyCode.LeftShift) | Input.GetKeyDown("w"))
         {
             anim.SetBool("idleWalk", true);
             anim.SetBool("walkRun", false);
@@ -97,14 +100,19 @@ public class PlayerMovement : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.LeftShift) | Input.GetKeyDown("w"))
         {
             anim.SetBool("walkRun", true);
-            //anim.SetBool("idleWalk", false);
         }
+        else if (Input.GetKeyUp(KeyCode.LeftShift) | Input.GetKeyDown("s"))
+        {
+            anim.SetBool("idleBack", true);
+        } 
 
         if (Input.GetKeyUp(KeyCode.LeftShift) | Input.GetKeyDown("w"))
         {
             anim.SetBool("idleWalk", true);
             anim.SetBool("walkRun", false);
         }
+        
+    
 
 
 
@@ -131,7 +139,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         anim.SetTrigger("jump");
         //allows the animation to play before the player jumps
-        yield return new WaitForSeconds(0.35f);
+        yield return new WaitForSeconds(0.5f);
         rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
         
 
