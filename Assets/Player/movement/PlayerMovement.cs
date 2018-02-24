@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     public float runSpeed;
     public float speed;
     public float jumpForce;
+    public float run;
     //public Coroutine StartCorountine;
 
     static Animator anim;
@@ -55,41 +56,58 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             speed = runSpeed;
+            anim.SetBool("run", true);
 
-        }else if(Input.GetKeyUp(KeyCode.LeftShift))
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             speed = movementSpeed;
+            anim.SetBool("run", false);
         }
+
+
+        if (Input.GetKeyDown("w"))
+        {
+            anim.SetBool("idleWalk", true);
+        }
+        else if (Input.GetKeyUp("w"))
+        {
+            anim.SetBool("idleWalk", false);
+        }
+
+        if (Input.GetKeyDown("s"))
+        {
+            anim.SetBool("idleBack", true);
+        }
+        else if (Input.GetKeyUp("s"))
+        {
+            anim.SetBool("idleBack", false);
+        }
+
+        if (Input.GetKeyDown("a"))
+        {
+            anim.SetBool("idleLeft", true);
+        }
+        else if (Input.GetKeyUp("a"))
+        {
+            anim.SetBool("idleLeft", false);
+        }
+
+        if (Input.GetKeyDown("d"))
+        {
+            anim.SetBool("idleRight", true);
+        }
+        else if (Input.GetKeyUp("d"))
+        {
+            anim.SetBool("idleRight", false);
+        }
+
 
         /*
-        //run
-        if (Input.GetKeyDown(KeyCode.LeftShift) | Input.GetKeyDown("w"))
-        {
-            anim.SetBool("walkRun",true);
-            anim.SetBool("idleWalk", false);
-        }//idle
-        else if(Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp("w"))
-        {
-            anim.SetBool("idleRun", false);
-        }
-        // walk
-        else if (Input.GetKeyUp(KeyCode.LeftShift) | Input.GetKeyDown("w"))
-        {
-            anim.SetBool("idleWalk",true);
-        }//idle
-        else if (Input.GetKeyUp(KeyCode.LeftShift) | Input.GetKeyUp("w"))
-        {
-            anim.SetBool("idleWalk", false);
-            anim.SetBool("walkRun", false);
-
-        }
-        */  
-
         if (Input.GetKeyUp(KeyCode.LeftShift) | Input.GetKeyUp("w"))
         {
             anim.SetBool("idleWalk", false);
             anim.SetBool("walkRun", false);
-            anim.SetBool("idleBack", false);
         }
        
         else if(Input.GetKeyUp(KeyCode.LeftShift) | Input.GetKeyDown("w"))
@@ -105,6 +123,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             anim.SetBool("idleBack", true);
         } 
+        else if(Input.GetKeyUp(KeyCode.LeftShift) | Input.GetKeyUp("s"))
+        {
+            anim.SetBool("idleBack", false);
+        }
 
         if (Input.GetKeyUp(KeyCode.LeftShift) | Input.GetKeyDown("w"))
         {
@@ -112,7 +134,8 @@ public class PlayerMovement : MonoBehaviour {
             anim.SetBool("walkRun", false);
         }
         
-    
+    */
+
 
 
 
@@ -139,7 +162,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         anim.SetTrigger("jump");
         //allows the animation to play before the player jumps
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.55f);
         rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
         
 
