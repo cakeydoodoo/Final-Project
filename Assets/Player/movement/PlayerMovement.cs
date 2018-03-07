@@ -164,7 +164,10 @@ public class PlayerMovement : MonoBehaviour {
         //allows the animation to play before the player jumps
         yield return new WaitForSeconds(0.55f);
         rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-        
+        yield return new WaitForSeconds(0.15f);
+        anim.SetTrigger("fall");
+        //ADD A RAYCAST IF YOU WANNA DO JUMPS AT DIFFERENT HEIGHTS.
+        anim.SetTrigger("land");
 
     }
 
