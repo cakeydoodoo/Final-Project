@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class attacking : MonoBehaviour {
+public class weaponChangeLeft : MonoBehaviour {
     public GameObject[] weapons;
 
     public int currentWeapon = 0;
