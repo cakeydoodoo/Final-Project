@@ -2,12 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class weaponChangeLeft : MonoBehaviour {
+public class weaponSwitch : MonoBehaviour {
+
+    public PlayerMovement script;
     public GameObject[] weapons;
+    static Animator anim;
 
     public int currentWeapon = 0;
-
     private int changeWeapon;
+    
+    /*
+    private void Awake()
+    {
+        {
+            anim = GameObject.Find("playerPrefab").GetComponent<Animator>();
+        }
+    } 
+    */
 
     void Start()
     {
@@ -31,8 +42,25 @@ public class weaponChangeLeft : MonoBehaviour {
             }
         }
 
+        //attack();
+
+    }
+    
+    /*
+    void attack()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            anim.SetBool("shieldSlash", true);
+        }
+        else if (Input.GetButtonUp("Fire1"))
+        {
+            anim.SetBool("shieldSlash", false);
+        }
+
     }
 
+    */
     void SwitchWeapon(int index)
     {
 

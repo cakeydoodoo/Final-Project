@@ -23,12 +23,8 @@ public class enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         //  rb = GetComponent<Rigidbody>();
         nav = GetComponent<NavMeshAgent>();
-
-
-
     }
 
     void Awake()
@@ -45,15 +41,11 @@ public class enemy : MonoBehaviour
     {
 
         enemyMovement();
-
-
     }
 
     void enemyMovement()
     {
-
         nav.SetDestination(target.position);
-
     }
 
 
