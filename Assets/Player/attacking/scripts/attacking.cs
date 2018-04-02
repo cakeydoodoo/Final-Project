@@ -45,7 +45,15 @@ public class attacking : MonoBehaviour {
                 //anim.SetBool("slash2",true);
             }
         }
-
+        else if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("attack.spin"))
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                anim.SetTrigger("shieldSlash3");
+                //anim.SetBool("slash2",true);
+            }
+        }
+        
 
     }
 

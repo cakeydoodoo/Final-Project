@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: e2fa865158bef184e89222fc9ef3d884
-timeCreated: 1517940508
+guid: aee264f7272efe34bbd23f4ec2d514d0
+timeCreated: 1522431028
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -147,7 +147,7 @@ ModelImporter:
     400138: //RootNode
     4300000: Beta_Joints
     4300002: Beta_Surface
-    7400000: Running
+    7400000: turn
     9500000: //RootNode
     13700000: Beta_Joints
     13700002: Beta_Surface
@@ -167,7 +167,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -175,20 +175,20 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Running
+      name: turn
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 21
+      lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
@@ -380,7 +380,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2

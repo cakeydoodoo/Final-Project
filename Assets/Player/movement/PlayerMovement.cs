@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
 
+    public attacking script2;
+
     public float movementSpeed;
     public float rotationSpeed;
     public float runSpeed;
@@ -13,7 +15,7 @@ public class PlayerMovement : MonoBehaviour {
     public float run;
     //public Coroutine StartCorountine;
 
-    static Animator anim;
+    Animator anim;
     Rigidbody rb;
     Camera myCamera;
 
@@ -38,7 +40,14 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(jump());
-            
+        }
+        if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("attack.slash"))
+        {
+            movementSpeed = 0;
+            runSpeed = 0;
+        }
+        else
+        {
 
         }
 

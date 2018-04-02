@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: bc80ea884e49b47429ec2de7b669a855
-timeCreated: 1517857554
+guid: 8416bd41fa26fba41b55e59a6d0d13df
+timeCreated: 1518110914
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -147,7 +147,7 @@ ModelImporter:
     400138: //RootNode
     4300000: Beta_Joints
     4300002: Beta_Surface
-    7400000: Idle
+    7400000: Walking Backwards
     9500000: //RootNode
     13700000: Beta_Joints
     13700002: Beta_Surface
@@ -167,7 +167,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -175,10 +175,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: Walking Backwards
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 499
+      lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -380,7 +380,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
