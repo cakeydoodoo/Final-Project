@@ -4,25 +4,32 @@ using UnityEngine;
 
 public class attacking : MonoBehaviour {
 
-    public weaponSwitch script2;
+    //public weaponSwitch script2;
 
-     Animator anim;
+
+    Animator anim;
+    int weaponSwitcher;
 
 
     private void Awake()
     {
-        {
+        
             anim = GameObject.Find("playerPrefab").GetComponent<Animator>();
-        }
+            //GameObject weaponSwitcher = GameObject.Find("Rightweapons");
+            //weaponSwitch currentWeapons = GameObject.Find("Rightweapons").GetComponent<weaponSwitch>();
+            //weaponSwitcher = GameObject.Find("Rightweapons").GetComponent<weaponSwitch>().currentWeapon;
+            //weaponSwitcher = GameObject.Find("Rightweapons").GetComponent<weaponSwitch>().currentWeapon;
+
+        
     }
 
     // Use this for initialization
     void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         attack();
 	}
@@ -32,27 +39,32 @@ public class attacking : MonoBehaviour {
 
     void attack()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            anim.SetTrigger("shieldSlash");
-            //anim.SetBool("slash",true);
-        }
-        if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("attack.slash"))
-        {
+        //if (weaponSwitcher == 1)
+        //{
+
+
             if (Input.GetButtonDown("Fire1"))
             {
-                anim.SetTrigger("shieldSlash2");
-                //anim.SetBool("slash2",true);
+                anim.SetTrigger("shieldSlash");
+                //anim.SetBool("slash",true);
             }
-        }
-        else if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("attack.spin"))
-        {
-            if (Input.GetButtonDown("Fire1"))
+            if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("attack.slash"))
             {
-                anim.SetTrigger("shieldSlash3");
-                //anim.SetBool("slash2",true);
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    anim.SetTrigger("shieldSlash2");
+                    //anim.SetBool("slash2",true);
+                }
             }
-        }
+            else if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("attack.spin"))
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    anim.SetTrigger("shieldSlash3");
+                    //anim.SetBool("slash2",true);
+                }
+            }
+        //}
         
 
     }

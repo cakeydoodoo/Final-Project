@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class weaponSwitch : MonoBehaviour {
 
-    public PlayerMovement script;
+    //public PlayerMovement script;
     public GameObject[] weapons;
-    static Animator anim;
+    Animator anim;
 
     public int currentWeapon = 0;
     private int changeWeapon;
     
-    /*
+    
     private void Awake()
     {
-        {
-            anim = GameObject.Find("playerPrefab").GetComponent<Animator>();
-        }
-    } 
-    */
+        anim = GameObject.Find("playerPrefab").GetComponent<Animator>();
+
+    }
+
 
     void Start()
     {
@@ -42,25 +41,12 @@ public class weaponSwitch : MonoBehaviour {
             }
         }
 
-        //attack();
-
-    }
-    
-    /*
-    void attack()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            anim.SetBool("shieldSlash", true);
-        }
-        else if (Input.GetButtonUp("Fire1"))
-        {
-            anim.SetBool("shieldSlash", false);
-        }
+        attack();
+        Debug.Log(currentWeapon);
 
     }
 
-    */
+
     void SwitchWeapon(int index)
     {
 
@@ -77,4 +63,85 @@ public class weaponSwitch : MonoBehaviour {
         }
     }
 
-}
+
+
+    void attack()
+    {        
+        
+        //changes the animations depending on the weapon equipped
+
+        if(weapons[0].activeSelf)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                anim.SetTrigger("greatSlash");
+            }
+            if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.highslash"))
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    anim.SetTrigger("greatSlash2");
+                }
+            }
+            /*
+            else if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.slash"))
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    anim.SetTrigger("shieldSlash3");
+                }
+            }
+            */
+
+        }
+        else if (weapons[1].activeSelf)
+        {
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                anim.SetTrigger("shieldSlash");
+            }
+
+            if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.slash"))
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    anim.SetTrigger("shieldSlash2");
+                }
+            }
+            else if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.backhand"))
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    anim.SetTrigger("shieldSlash3");
+                }
+            }
+
+
+
+            if (anim.GetBool("run") == true)
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    if (anim.GetBool("idleRight") == true || anim.GetBool("idleLeft"))
+                    {
+                        anim.SetTrigger("shieldStrafe");
+                    }
+                    else anim.SetTrigger("shieldRun");
+                }
+            } 
+                    
+        }
+            else if (weapons[2].activeSelf)
+            {
+
+            }
+            else if(weapons[3].activeSelf)
+            {
+
+            }
+
+    }
+
+
+    }

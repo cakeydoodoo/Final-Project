@@ -29,7 +29,7 @@ public class destroyer : MonoBehaviour {
     private void OnCollisionEnter(Collision col)
     {
         //if the current animation is playing then....
-        if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("attack.slash"))
+        if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.slash"))
         {
             // the game object enemy if it is hit by the weapon
             if (col.gameObject.GetComponent<enemy>())
