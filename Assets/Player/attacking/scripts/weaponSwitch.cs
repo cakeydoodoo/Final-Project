@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class weaponSwitch : MonoBehaviour {
 
-    //public PlayerMovement script;
-    public GameObject[] weapons;
     Animator anim;
 
+    //weapon switching stuff
+    public GameObject[] weapons;
     public int currentWeapon = 0;
     private int changeWeapon;
+
+    //weapon counter
+    private int counter =0;
     
     
     private void Awake()
@@ -42,7 +45,8 @@ public class weaponSwitch : MonoBehaviour {
         }
 
         attack();
-        Debug.Log(currentWeapon);
+        //print("current weapon");
+        //Debug.Log(currentWeapon);
 
     }
 
@@ -66,57 +70,71 @@ public class weaponSwitch : MonoBehaviour {
 
 
     void attack()
-    {        
-        
-        //changes the animations depending on the weapon equipped
+    {
 
+        //changes the animations depending on the weapon equipped
+        //Greatsword
         if(weapons[0].activeSelf)
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                anim.SetTrigger("greatSlash");
-            }
-            if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.highslash"))
-            {
-                if (Input.GetButtonDown("Fire1"))
+
+                if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.highslash"))
                 {
-                    anim.SetTrigger("greatSlash2");
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        anim.SetTrigger("greatSlash2");
+                    }
+                }
+                else anim.SetTrigger("greatSlash");
+
+            }
+            if (Input.GetButton("Fire1"))
+            {
+                counter++;
+                if (counter == 50)
+                {
+                    print("charged");
+                    anim.SetTrigger("greatCharge");
+
+
                 }
             }
-            /*
-            else if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.slash"))
+            else if (Input.GetButtonUp("Fire1"))
             {
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    anim.SetTrigger("shieldSlash3");
-                }
+                counter = 0;
             }
-            */
+            
+
+            print("counter");
+            Debug.Log(counter);
+
 
         }
+
+
+        //sword and shield
         else if (weapons[1].activeSelf)
         {
 
             if (Input.GetButtonDown("Fire1"))
             {
-                anim.SetTrigger("shieldSlash");
-            }
-
-            if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.slash"))
-            {
-                if (Input.GetButtonDown("Fire1"))
+                if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.slash"))
                 {
-                    anim.SetTrigger("shieldSlash2");
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        anim.SetTrigger("shieldSlash2");
+                    }
                 }
-            }
-            else if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.backhand"))
-            {
-                if (Input.GetButtonDown("Fire1"))
+                else if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.backhand"))
                 {
-                    anim.SetTrigger("shieldSlash3");
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        anim.SetTrigger("shieldSlash3");
+                    }
                 }
+                else anim.SetTrigger("shieldSlash");
             }
-
 
 
             if (anim.GetBool("run") == true)
