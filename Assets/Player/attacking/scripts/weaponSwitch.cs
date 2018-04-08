@@ -152,8 +152,34 @@ public class weaponSwitch : MonoBehaviour {
         }
             else if (weapons[2].activeSelf)
             {
-
+            if (Input.GetButtonDown("Fire1"))
+            {
+                if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("daggers.dagger1"))
+                {
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        anim.SetTrigger("dagger2");
+                    }
+                }
+                else if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("daggers.dagger2"))
+                {
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        anim.SetTrigger("dagger3");
+                    }
+                }
+                else anim.SetTrigger("dagger");
             }
+
+            if (anim.GetBool("run") == true)
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    anim.SetTrigger("runAttack");
+                }
+            }
+
+        }
             else if(weapons[3].activeSelf)
             {
 
