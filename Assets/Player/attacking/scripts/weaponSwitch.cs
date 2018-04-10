@@ -13,14 +13,17 @@ public class weaponSwitch : MonoBehaviour {
 
     //weapon counter
     private int counter =0;
-    
-    
+
+    //projectile 
+    public GameObject projectileTemplate, firingPoint;
+
+
+
     private void Awake()
     {
         anim = GameObject.Find("playerPrefab").GetComponent<Animator>();
 
     }
-
 
     void Start()
     {
@@ -74,7 +77,7 @@ public class weaponSwitch : MonoBehaviour {
 
         //changes the animations depending on the weapon equipped
         //Greatsword
-        if(weapons[0].activeSelf)
+        if (weapons[0].activeSelf)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -104,7 +107,7 @@ public class weaponSwitch : MonoBehaviour {
             {
                 counter = 0;
             }
-            
+
 
             print("counter");
             Debug.Log(counter);
@@ -147,11 +150,11 @@ public class weaponSwitch : MonoBehaviour {
                     }
                     else anim.SetTrigger("shieldRun");
                 }
-            } 
-                    
+            }
+
         }
-            else if (weapons[2].activeSelf)
-            {
+        else if (weapons[2].activeSelf)
+        {
             if (Input.GetButtonDown("Fire1"))
             {
                 if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("daggers.dagger1"))
@@ -175,17 +178,63 @@ public class weaponSwitch : MonoBehaviour {
             {
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    anim.SetTrigger("runAttack");
+                    anim.SetTrigger("daggerRun");
                 }
             }
 
         }
-            else if(weapons[3].activeSelf)
+        else if (weapons[3].activeSelf)
+        {
+            if (Input.GetButtonDown("Fire1"))
             {
+
+                if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.jab"))
+                {
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        anim.SetTrigger("hand2");
+                    }
+                }
+                else if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.body"))
+                {
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        anim.SetTrigger("hand3");
+                    }
+                }
+                else anim.SetTrigger("hand");
 
             }
 
+            if (Input.GetButton("Fire1"))
+            {
+                counter++;
+                if (counter == 50)
+                {
+                    print("charged");
+                    anim.SetTrigger("handCharge");
+                    StartCoroutine(fire());
+
+                }
+            }
+            else if (Input.GetButtonUp("Fire1"))
+            {
+                counter = 0;
+            }
+            print("counter");
+            Debug.Log(counter);
+        }
+
+    }
+
+    IEnumerator fire()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(projectileTemplate, firingPoint.transform.position, firingPoint.transform.rotation);
+
     }
 
 
-    }
+
+
+}

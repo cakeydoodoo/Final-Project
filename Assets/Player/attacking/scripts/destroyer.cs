@@ -35,13 +35,24 @@ public class destroyer : MonoBehaviour {
             this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.runAttack") |
             this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.turn") |
             this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.slash") |
-            this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.highslash"))
+            this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.highslash") |
+            this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.slash") |
+            this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.slam") |
+            this.anim.GetCurrentAnimatorStateInfo(0).IsName("daggers.dagger1") |
+            this.anim.GetCurrentAnimatorStateInfo(0).IsName("daggers.dagger2") |
+            this.anim.GetCurrentAnimatorStateInfo(0).IsName("daggers.thrust") |
+            this.anim.GetCurrentAnimatorStateInfo(0).IsName("daggers.combo") |
+            this.anim.GetCurrentAnimatorStateInfo(0).IsName("daggers.runAttack") |
+            this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.jab") |
+            this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.body") |
+            this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.leftHook") |
+            this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.fireball"))
         {
             // the game object enemy if it is hit by the weapon
             if (col.gameObject.GetComponent<enemy>())
             {
                 col.gameObject.SendMessage("die");
-            }
+            }       
 
         }
 

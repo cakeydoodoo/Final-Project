@@ -45,11 +45,6 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
-    IEnumerator wait()
-    {
-        yield return new WaitForSecondsRealtime(1f);
-    }
-
     void Movement()
     {
         
