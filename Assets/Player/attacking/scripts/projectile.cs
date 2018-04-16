@@ -13,7 +13,7 @@ public class projectile : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        rb.AddForce(transform.up * -7.5f, ForceMode.VelocityChange);
+        rb.AddForce(transform.forward * 7.5f, ForceMode.VelocityChange);
     }
 
     // Update is called once per frame
@@ -27,10 +27,9 @@ public class projectile : MonoBehaviour {
         if (col.gameObject.GetComponent<enemy>())
         {
             col.gameObject.SendMessage("die");
-
         }
 
-        Destroy(this.gameObject, 2);
+        Destroy(this.gameObject);
 
     }
 
