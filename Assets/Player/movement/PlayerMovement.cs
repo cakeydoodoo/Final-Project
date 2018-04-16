@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour {
         {
             StartCoroutine(jump());
         }
-        
         Movement();
 
     }
@@ -48,32 +47,45 @@ public class PlayerMovement : MonoBehaviour {
     void Movement()
     {
         
-        if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("attack.slash"))
-        {
-            movementSpeed = 0;
-            runSpeed = 0;
-        }
-        else
-        {
-            movementSpeed = 2;
-            runSpeed = 10;
-        }
-        
-
         //set players speed
+        
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             speed = runSpeed;
             anim.SetBool("run", true);
-
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            speed = movementSpeed;
             anim.SetBool("run", false);
         }
+        if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.slash") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.backhand") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.spin") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("sword&shield.turn") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.slash") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.highslash") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.slash") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("greatsword.slam") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("daggers.dagger1") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("daggers.dagger2") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("daggers.thrust") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("daggers.combo") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.jab") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.body") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.leftHook") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.fireball") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.kick") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.kick2") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.kick3") |
+        this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.sweep"))
+        {
+            speed = 0;
+        }
+        else if (anim.GetBool("run") == false)
+        {
+            speed = movementSpeed;
 
-
+        }
         if (Input.GetKeyDown("w"))
         {
             anim.SetBool("idleWalk", true);
@@ -110,16 +122,11 @@ public class PlayerMovement : MonoBehaviour {
             anim.SetBool("idleRight", false);
         }
 
-        
-
 
         //player movement
         Vector3 inputVelocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         inputVelocity = inputVelocity * speed * Time.deltaTime;
         rb.MovePosition(transform.position + (transform.forward * inputVelocity.z) + (transform.right * inputVelocity.x));
-
-
-
 
 
         //camera rotation
@@ -144,7 +151,6 @@ public class PlayerMovement : MonoBehaviour {
         anim.SetTrigger("land");
 
     }
-
 
 }
 
