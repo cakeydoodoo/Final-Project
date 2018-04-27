@@ -76,7 +76,6 @@ public class PlayerMovement : MonoBehaviour {
         this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.fireball") |
         this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.kick") |
         this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.kick2") |
-        this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.kick3") |
         this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.sweep"))
         {
             speed = 0;

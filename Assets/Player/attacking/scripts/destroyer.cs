@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class destroyer : MonoBehaviour {
 
@@ -12,7 +14,7 @@ public class destroyer : MonoBehaviour {
     private void Awake()
     {
         //rb = GetComponent<Rigidbody>();
-        anim = GameObject.Find("playerPrefab").GetComponent<Animator>();
+        anim = GameObject.Find("player").GetComponent<Animator>();
 
     }
     
@@ -59,7 +61,7 @@ public class destroyer : MonoBehaviour {
                 col.gameObject.SendMessage("die");
             }       
 
-        }
+            }
 
         //Destroy(this.gameObject, 2);
     }

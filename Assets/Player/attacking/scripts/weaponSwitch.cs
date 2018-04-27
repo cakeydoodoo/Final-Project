@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class weaponSwitch : MonoBehaviour {
 
@@ -18,11 +20,9 @@ public class weaponSwitch : MonoBehaviour {
     public GameObject projectileTemplate, firingPoint;
 
 
-
     private void Awake()
     {
-        anim = GameObject.Find("playerPrefab").GetComponent<Animator>();
-
+        anim = GameObject.Find("player").GetComponent<Animator>();
     }
 
     void Start()
@@ -105,10 +105,10 @@ public class weaponSwitch : MonoBehaviour {
             {
                 counter = 0;
             }
-
+            /*
             print("counter");
             Debug.Log(counter);
-
+            */
         }
         
 

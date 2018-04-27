@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+
 
 
 public class enemy : MonoBehaviour
@@ -10,13 +12,12 @@ public class enemy : MonoBehaviour
     Rigidbody rb;
 
     NavMeshAgent nav;
-    public Transform target;
+    Transform target; 
 
 
     // Enemy Health
     public int enemyHealth;
     public int currentHealth;
-
     public int damage;
 
 
@@ -25,21 +26,13 @@ public class enemy : MonoBehaviour
     {
         //  rb = GetComponent<Rigidbody>();
         nav = GetComponent<NavMeshAgent>();
-    }
-
-    void Awake()
-    {
-
+        target = GameObject.Find("player").transform;
 
     }
-
-    // Update is called once per frame
-
 
     // Update is called once per frame
     void Update()
     {
-
         enemyMovement();
     }
 
@@ -51,7 +44,9 @@ public class enemy : MonoBehaviour
 
     void die()
     {
+        UIManager.scoreNumber += 1;
         Destroy(this.gameObject);
+
     }
 
 }
