@@ -26,7 +26,7 @@ public class projectile : MonoBehaviour {
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.GetComponent<enemy>())
+        if (col.gameObject.GetComponent<Complete.enemy>())
         {
             col.gameObject.SendMessage("die");
         }

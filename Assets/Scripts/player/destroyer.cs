@@ -56,7 +56,7 @@ public class destroyer : MonoBehaviour {
             this.anim.GetCurrentAnimatorStateInfo(0).IsName("hand.sweep"))
         {
             // the game object enemy if it is hit by the weapon send message to enemy script run die function
-            if (col.gameObject.GetComponent<enemy>())
+            if (col.gameObject.GetComponent<Complete.enemy>())
             {
                 col.gameObject.SendMessage("die");
             }       
