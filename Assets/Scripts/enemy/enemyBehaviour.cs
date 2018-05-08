@@ -1,24 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using NPBehave;
 
 
 namespace Complete
 {
     public partial class enemy : MonoBehaviour {
-        
+
         private Root CreateBehaviourTree()
         {
             return new Root(
-                new Action(() => MoveAI(0.9f))
+                    new Service(0.2f, UpdatePerception,
+                    new Action(() => MoveAI(0.5f))
+                    )
+                    
+                    
+                    );
+    
 
-            );
 
         }
 
-        /*
+
+        private void UpdatePlayerDistance()
+        {
+            Vector3 playerLocalPos = this.transform.InverseTransformPoint(GameObject.FindGameObjectWithTag("Player").transform.position);
+            behaviorTree.Blackboard["playerLocalPos"] = playerLocalPos;
+            behaviorTree.Blackboard["playerDistance"] = playerLocalPos.magnitude;
+        }
+
         private void UpdatePerception()
         {
             Vector3 targetPos = target.position;
@@ -29,11 +40,13 @@ namespace Complete
             blackboard["targetDistance"] = localPos.magnitude;
             blackboard["targetInFront"] = heading.z > 0;
             blackboard["targetOnRight"] = heading.x > 0;
+            blackboard["targetOffCentre"] = Mathf.Abs(heading.x);
 
             blackboard["environmentFront"] = environmentFront();
             blackboard["envronmentLeft"] = environmentLeft();
             blackboard["envronmentLeft"] = environmentRight();
 
+            blackboard["targetOpen"] = targetOpen();
 
         }
         bool environmentLeft()
@@ -68,12 +81,19 @@ namespace Complete
             return false;
 
         }
-
-        private Node StopMove()
+        private bool targetOpen()
         {
-            return new Action(() => MoveAI(0));
+            Vector3 targetPosition = new Vector3(target.position.x, target.position.y + 0.5f, target.position.z + 0.88f);
+            RaycastHit hit;
+            if (Physics.SphereCast(transform.position, 0.5f, targetPosition - transform.position, out hit))
+            {
+                //the spherecast will hit anything with a collider but will return true if it hits anything with the name tank.
+                if (hit.collider.gameObject.name.Contains("Tank"))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
-
-    */
     }
 }
