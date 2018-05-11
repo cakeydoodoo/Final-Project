@@ -9,7 +9,7 @@ public class PlayerUI : MonoBehaviour {
     public int currentHealth;
     public Slider healthBar;
     PlayerMovement playerMovementRef;
-    Animator anim;
+
 
     public Image damageImage;
     public float flashSpeed = 5f;
@@ -21,7 +21,6 @@ public class PlayerUI : MonoBehaviour {
 
 	void Start ()
     {
-        anim = GameObject.Find("player").GetComponent<Animator>();  
         playerMovementRef = GetComponent<PlayerMovement>();
         currentHealth = maxHealth;
     }

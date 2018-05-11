@@ -9,13 +9,12 @@ using NPBehave;
 
 namespace Complete
 {
-    public partial class enemy : MonoBehaviour
+    public partial class Enemy : MonoBehaviour
     {
-        GameObject player;
-        PlayerUI playerUI;
-        Rigidbody rb;
 
-        NavMeshAgent nav;
+        Rigidbody rb;
+        Animator anim;
+
         Transform target;
         private float moveVelocity;
         private float turnVelocity;
@@ -33,11 +32,9 @@ namespace Complete
         private void Start()
         {
             //  rb = GetComponent<Rigidbody>();
-            nav = GetComponent<NavMeshAgent>();
             target = GameObject.Find("player").transform;
-            playerUI = GameObject.Find("player").GetComponent<PlayerUI>();
-            player = GameObject.Find("player1");
             rb = GetComponent<Rigidbody>();
+            anim = GetComponent<Animator>();
 
             behaviorTree = CreateBehaviourTree();
             blackboard = behaviorTree.Blackboard;
@@ -49,37 +46,30 @@ namespace Complete
         void Update()
         {
             Move();
-            //enemyMovement();
+            Turn();
         }
 
-        /*
-        void enemyMovement()
-        {
-            //sets the target of the enemy to the players position, following the player
-            nav.SetDestination(target.position);
-        }
-        */
 
-        void die()
+         void die()
         {
             UIManager.scoreNumber += 1;
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
+            GetComponent<Rigidbody>().isKinematic = true;
+            //Destroy(this.gameObject);
             //destroys the game object and then adds 1 to the players score
         }
 
+        /*
         //FIX THIS, IT DESTROYS THE ENEMIES WHEN THEY SPAWN
         void OnCollisionEnter(Collision other)
         {
-            if (//other.gameObject.GetComponent<enemy>()
-                other.gameObject == player
-                )
+                if (other.gameObject == player)
             {
                 playerUI.TakeDamage(10);
-                other.gameObject.SendMessage("die");
-            }
-            //Destroy(this.gameObject);
+            }  
 
         }
+                    */
 
         private void Move()
         {
@@ -96,8 +86,23 @@ namespace Complete
 
         private void MoveAI(float move)
         {
-            //keeps the value of turnVelocity between -1 and 1
             moveVelocity = move;
+            anim.SetBool("walk", true);
+        }
+
+        private void TurnAI(float turn)
+        {
+            turnVelocity = turn;
+        }
+
+        private void Stop()
+        {
+            anim.SetBool("walk", false);
+        }
+
+        private void attack()
+        {
+            anim.SetTrigger("attack");
         }
 
     }
