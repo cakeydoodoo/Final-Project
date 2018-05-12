@@ -7,16 +7,17 @@ public class enemyDestroyer : MonoBehaviour {
     Animator anim;
     GameObject player;
     PlayerUI playerUI;
-    public GameObject enemyPrefab;
+    //public GameObject enemyPrefab;
 
     private void Awake()
     {
-        GameObject enemyExample = Instantiate(enemyPrefab, transform.position, transform.rotation) as GameObject;
-
+        //GameObject enemyExample = Instantiate(enemyPrefab, transform.position, transform.rotation) as GameObject;
     }
+
     // Use this for initialization
-    void Start () {
-        anim = GameObject.Find("enemy").GetComponent<Animator>();
+    void Start ()
+    {
+        //anim = GameObject.Find("enemy").GetComponent<Animator>();
         playerUI = GameObject.Find("player").GetComponent<PlayerUI>();
         player = GameObject.Find("player");
     }
@@ -28,13 +29,11 @@ public class enemyDestroyer : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-        if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("attack"))
-        {
+        
             if (other.gameObject == player)
             {
-                playerUI.TakeDamage(10);
+                playerUI.TakeDamage(10f);
             }
-        }
 
     }
 }
