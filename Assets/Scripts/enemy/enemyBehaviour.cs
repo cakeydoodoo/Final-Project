@@ -18,6 +18,7 @@ namespace Complete
                                                 Operator.IS_GREATER, 25f,
                                                 Stops.IMMEDIATE_RESTART,
                                                 new Selector(
+
                                                     new BlackboardCondition("environmentFront",
                                                     Operator.IS_EQUAL, true,
                                                     Stops.IMMEDIATE_RESTART,
@@ -39,12 +40,11 @@ namespace Complete
                                                                                     )
 
                                                             ),
-                                                        //if there is nothing on the left or right and only in front, reverse then turn right.
                                                         new Sequence(
-                                                            new Action(() => MoveAI(-0.5f)),
-                                                            //                                                            new Wait(0.5f),
-                                                            new Action(() => TurnAI(-0.7f))
+                                                            new Action(() => MoveAI(0.1f)),
+                                                            new Action(() => TurnAI(0.7f))
                                                             )
+
                                                     )
                                                     ),
                                                     //if there is no part of the environment in front, then stop turning and move forward.
@@ -136,8 +136,8 @@ namespace Complete
         private void UpdatePlayerDistance()
         {
             Vector3 playerLocalPos = this.transform.InverseTransformPoint(GameObject.FindGameObjectWithTag("Player").transform.position);
-            behaviorTree.Blackboard["playerLocalPos"] = playerLocalPos;
-            behaviorTree.Blackboard["playerDistance"] = playerLocalPos.magnitude;
+            behaviourTree.Blackboard["playerLocalPos"] = playerLocalPos;
+            behaviourTree.Blackboard["playerDistance"] = playerLocalPos.magnitude;
         }
 
         private void UpdatePerception()
@@ -172,7 +172,7 @@ namespace Complete
         bool environmentFront()
         {
             Vector3 forward = transform.TransformDirection(Vector3.forward);
-            if (Physics.Raycast(transform.position, forward, 10))
+            if (Physics.Raycast(transform.position, forward, 5))
             {
                 return true;
             }

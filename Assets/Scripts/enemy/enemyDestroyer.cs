@@ -32,7 +32,7 @@ public class enemyDestroyer : MonoBehaviour {
         
             if (other.gameObject == player)
             {
-                playerUI.TakeDamage(10f);
+                playerUI.TakeDamage(1f);
             }
 
     }

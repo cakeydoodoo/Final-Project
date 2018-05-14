@@ -26,7 +26,7 @@ namespace Complete
         public int damage;
 
         private Blackboard blackboard;
-        private Root behaviorTree;
+        private Root behaviourTree;
 
         // Use this for initialization
         private void Start()
@@ -36,10 +36,11 @@ namespace Complete
             rb = GetComponent<Rigidbody>();
             anim = GetComponent<Animator>();
 
-            behaviorTree = CreateBehaviourTree();
-            blackboard = behaviorTree.Blackboard;
-            behaviorTree.Start();
-
+            behaviourTree = CreateBehaviourTree();
+            blackboard = behaviourTree.Blackboard;
+            behaviourTree.Start();
+            Debugger debugger = (Debugger)this.gameObject.AddComponent(typeof(Debugger));
+            debugger.BehaviorTree = behaviourTree;
         }
 
         // Update is called once per frame
